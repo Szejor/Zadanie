@@ -10,7 +10,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
     db = client.db('zadanie')
-    quotesCollection = db.collection('quotes')
+    quotesCollection = db.collection('Studenci')
   })
   .catch(console.error)
 
@@ -20,21 +20,21 @@ MongoClient.connect(url, { useUnifiedTopology: true })
   
  
 
+  app.set('view engine', 'ejs')
+
   app.get('/', (req, res) => {
     
-    db.collection('quotes').find().toArray()
+    db.collection('Studenci').find().toArray()
       .then(results => {
-        console.log(results)
-        res.sendFile(__dirname + '/index.html')
+        res.render('index.ejs', { Studenci: results})
       })
       .catch(error => console.error(error))
-    // ...
   })
 
   app.use(bodyParser.urlencoded({ extended: true }))
   
  
-  app.post('/quotes', (req, res) => {
+  app.post('/Studenci', (req, res) => {
     quotesCollection.insertOne(req.body)
       .then(result => {
         res.redirect('/')

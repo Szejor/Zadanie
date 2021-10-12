@@ -7,12 +7,23 @@
     <title>Formularz</title>
 </head>
 <body>
-    <form action="/quotes" method="POST">
+    <form action="/Studenci" method="POST">
         <input type="number" placeholder="album" name="album">
         <input type="text" placeholder="Imie Studenta" name="imie">
         <input type="text" placeholder="Nazwisko Studenta" name="nazwisko">
         <button type="text">Submit</button>
       </form>
+      <table>
+        </tr>
+        <% for(var i = 0; i < Studenci.length; i++) {%>
+          <tr>
+              <th><%= Studenci[i].album %></th>
+              <th><%= Studenci[i].imie %></th>
+              <th><%= Studenci[i].nazwisko %></th>
+              <th><button>Usuń</button></th>
+          </tr>
+          <% } %>
+    </table>
 </body>
 </html>
 
